@@ -1,23 +1,18 @@
 package pl.diet.company.dietapp
 
-import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.web.servlet.ModelAndView
+import org.springframework.web.bind.annotation.*
+import pl.diet.company.dietapp.service.Product
 import pl.diet.company.dietapp.service.ProductInfoReader
 
-@Controller
+@RestController
 class MainController(val productInfoReader: ProductInfoReader) {
 
-    @RequestMapping("/products/{productName}", method = [RequestMethod.GET])
-    @ResponseBody
-    fun getProduct(@PathVariable productName: String) : ModelAndView {
+    @GetMapping("/products")
+    fun getProduct(@RequestParam(name="name", required = false) productName: String) : List<Product> {
         val maybeProducts = productInfoReader.getProductInfo(productName)
-        return if (maybeProducts.isEmpty()) ModelAndView("NotFoundProduct")
-        else ModelAndView("ProductPage", "product", maybeProducts.first())
-        
+        return if (maybeProducts.isEmpty()) listOf()
+        else maybeProducts
+
     }
 
 }
