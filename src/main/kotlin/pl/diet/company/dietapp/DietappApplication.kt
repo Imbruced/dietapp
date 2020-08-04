@@ -1,11 +1,12 @@
 package pl.diet.company.dietapp
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
+import org.springframework.boot.builder.SpringApplicationBuilder
 
 @SpringBootApplication
 class DietappApplication
 
 fun main(args: Array<String>) {
-	runApplication<DietappApplication>(*args)
+	val builder = SpringApplicationBuilder(DietappApplication::class.java)
+	builder.headless(true).run(*args)
 }
