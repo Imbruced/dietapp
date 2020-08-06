@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service
 class ProductInfoReader(val productReader: ProductReader) {
 
     fun getProductInfo(productName: String): List<Product> {
-        productReader.readProducts()
         return productReader.readProducts().filter {
             it.name.toLowerCase().startsWith(productName)
         }
