@@ -1,6 +1,7 @@
 package pl.diet.company.dietapp.service
 
 import org.springframework.stereotype.Service
+import pl.diet.company.dietapp.domain.Product
 
 @Service
 class ProductInfoReader(val productReader: ProductReader) {
