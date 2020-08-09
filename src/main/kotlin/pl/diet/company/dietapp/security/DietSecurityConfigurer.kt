@@ -25,7 +25,7 @@ class DietSecurityConfigurer(@Autowired val dietAppUserService: DietAppUserServi
 
     override fun configure(http: HttpSecurity) {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/home/authenticates")
+                .authorizeRequests().antMatchers("/home/authenticate")
                 .permitAll().anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
