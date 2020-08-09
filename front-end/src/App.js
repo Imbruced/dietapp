@@ -6,8 +6,12 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Home from "./Layout/Home";
 import Search from "./Layout/Search";
 import Product from "./Layout/Product";
+import Login from "./Layout/Login";
+import Register from "./Layout/Register";
+
 import Hamburger from "./Components/Hamburger";
 import Menu from "./Components/Menu";
+import Footer from "./Components/Footer";
 
 const GlobalStyle = createGlobalStyle`
       body{
@@ -34,6 +38,12 @@ const GlobalStyle = createGlobalStyle`
 a{    text-decoration: none;}
 `;
 
+const WrapperStyled = styled.main`
+  display: block;
+  position: relative;
+  min-height: 100vh;
+`;
+
 class App extends Component {
   state = {
     isMenuVisible: false,
@@ -58,26 +68,35 @@ class App extends Component {
             click={this.menuButtonClickHandler}
             isOpen={this.state.isMenuVisible}
           />
-          <Switch>
-            <Route path="/" exact>
-              <Home
-                click={this.menuButtonClickHandler}
-                isOpen={this.state.isMenuVisible}
-              />
-            </Route>
-            <Route path="/search">
-              <Search
-                click={this.menuButtonClickHandler}
-                isOpen={this.state.isMenuVisible}
-              />
-            </Route>
-            <Route path="/product">
-              <Product
-                click={this.menuButtonClickHandler}
-                isOpen={this.state.isMenuVisible}
-              />
-            </Route>
-          </Switch>
+          <WrapperStyled>
+            <Switch>
+              <Route path="/" exact>
+                <Home
+                  click={this.menuButtonClickHandler}
+                  isOpen={this.state.isMenuVisible}
+                />
+              </Route>
+              <Route path="/search">
+                <Search
+                  click={this.menuButtonClickHandler}
+                  isOpen={this.state.isMenuVisible}
+                />
+              </Route>
+              <Route path="/product">
+                <Product
+                  click={this.menuButtonClickHandler}
+                  isOpen={this.state.isMenuVisible}
+                />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/register">
+                <Register />
+              </Route>
+            </Switch>
+            <Footer />
+          </WrapperStyled>
         </Router>
       </>
     );

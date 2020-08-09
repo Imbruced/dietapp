@@ -25,37 +25,55 @@ const SearchBarStyled = styled.section`
     color: #c7c7c7;
   }
 `;
-class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: "" };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange = (event) => {
-    this.setState({ value: event.target.value });
-  };
-
-  handleSubmit = (event) => {
-    alert("Podano następujące imię: " + this.state.value);
-    event.preventDefault();
-  };
-  render() {
-    return (
-      <SearchBarStyled>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-            placeholder="Wpisz nazwę produktu"
-          />
-        </form>
-      </SearchBarStyled>
-    );
-  }
-}
+const SearchBar = (props) => {
+  return (
+    <SearchBarStyled>
+      <form>
+        <input
+          type="text"
+          value={props.value}
+          onChange={props.changeHandler}
+          placeholder="Wpisz nazwę produktu"
+        />
+      </form>
+    </SearchBarStyled>
+  );
+};
 
 export default SearchBar;
+
+// class SearchBar extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { value: "" };
+
+//     this.handleChange = this.handleChange.bind(this);
+//     this.handleSubmit = this.handleSubmit.bind(this);
+//   }
+
+//   handleChange = (event) => {
+//     this.setState({ value: event.target.value });
+//   };
+
+//   handleSubmit = (event) => {
+//     alert("Podano następujące imię: " + this.state.value);
+//     event.preventDefault();
+//   };
+//   render() {
+//     return (
+//       <SearchBarStyled>
+//         <form onSubmit={this.handleSubmit}>
+//           <input
+//             type="text"
+//             value={this.state.value}
+//             onChange={this.handleChange}
+//             placeholder="Wpisz nazwę produktu"
+//           />
+//         </form>
+//       </SearchBarStyled>
+//     );
+//   }
+// }
+
+// export default SearchBar;

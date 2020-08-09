@@ -9,12 +9,27 @@ import Button from "../Components/Button";
 import backIco from "../assets/svg/backIco.svg";
 
 class Search extends Component {
-  state = {};
+  state = {
+    value: "",
+  };
+  handleChange = (event) => {
+    this.setState({
+      value: event.target.value,
+    });
+    console.log(this.state.value);
+  };
+  // componentDidUpdate() {
+  //   this.handleChange = (event) => {
+  //     this.setState({ value: event.target.value });
+  //     console.log(this.state.value);
+  //   };
+  // }
+
   render() {
     return (
       <>
         <Logo />
-        <SearchBar />
+        <SearchBar value={this.state.value} changeHandler={this.handleChange} />
         <ResultList />
         <Link to="/">
           <Button txt="Wstecz" img={backIco} />
