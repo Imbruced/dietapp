@@ -1,6 +1,10 @@
 package pl.diet.company.dietapp.service
 
 import org.springframework.stereotype.Service
+import pl.diet.company.dietapp.domain.Description
+import pl.diet.company.dietapp.domain.Measurement
+import pl.diet.company.dietapp.domain.Money
+import pl.diet.company.dietapp.domain.Product
 import java.math.BigDecimal
 
 @Service
@@ -23,9 +27,3 @@ class ProductReader{
 
     }
 }
-
-
-data class Money(val value: BigDecimal, val currency: String)
-data class Measurement(val value: Double, val unit: String)
-data class Description(val kcal: Measurement, val fat: Measurement, val carbo: Measurement, val protein: Measurement)
-data class Product(val id: String, val name: String, val average_price: Money, val description: Description)
