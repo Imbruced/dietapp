@@ -10,7 +10,6 @@ class ProductQuery(@Autowired val productRepository: ProductRepository){
     fun findProductByName(productName: String): List<Product> =
             productRepository.findProductByName(productName)
 
-
     fun findAll(): List<Product> = productRepository.findAll()
 
     fun save(product: Product) = productRepository.save(product)
