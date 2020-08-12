@@ -9,8 +9,11 @@ import pl.diet.company.dietapp.service.ProductQuery
 
 import pl.diet.company.dietapp.service.ProductReader
 
+import org.springframework.web.bind.annotation.*
+
 
 @RestController
+@CrossOrigin
 class ProductController(@Autowired val productQuery: ProductQuery,
                         @Autowired val productReader: ProductReader) {
 
@@ -19,7 +22,7 @@ class ProductController(@Autowired val productQuery: ProductQuery,
         return productQuery.findAll();
     }
 
-    @GetMapping("/products")
+    @GetMapping("/products", produces = ["application/json"])
     fun getProduct(@RequestParam(name="name", required = false) productName: String) : List<Product> {
         val maybeProducts = productQuery.findProductByName(productName)
         return if (maybeProducts.isEmpty()) listOf()

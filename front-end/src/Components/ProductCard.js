@@ -38,19 +38,20 @@ const ProductCardInfoStyled = styled.div`
   }
 `;
 
-const ProductCard = () => {
+const ProductCard = (props) => {
+  console.log(props.props.result);
   return (
     <ProductCardWrapperStyled>
       <ProductCardStyled>
         <ProductCardInfoStyled>
-          <p>Mlekpol Ser Królewski Z Kolna W Plastrach 150 G</p>
+          {/* <p>Mlekpol Ser Królewski Z Kolna W Plastrach 150 G</p>
           <div>
             <p>Wartość eneretyczna: 300kcal</p>
             <p>Białko: 300kcal</p>
             <p>Węglowodany: 300kcal</p>
             <p>Tłuszcz: 300kcal</p>
             <p>Średnia cena: 300kcal</p>
-          </div>
+          </div> */}
         </ProductCardInfoStyled>
       </ProductCardStyled>
     </ProductCardWrapperStyled>

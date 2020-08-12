@@ -15,7 +15,7 @@ class Product extends Component {
       <>
         <Logo />
         <SearchBar />
-        <ProductCard />
+        <ProductCard props={this.props} />
         <Link to="/search">
           <Button txt="Wstecz" img={backIco} />
         </Link>

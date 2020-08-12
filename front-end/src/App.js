@@ -46,8 +46,34 @@ const WrapperStyled = styled.main`
 
 class App extends Component {
   state = {
+    value: "",
     isMenuVisible: false,
+    data: [],
   };
+  handleChange = (event) => {
+    this.setState({
+      value: event.target.value,
+    });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.value.length === 0) return;
+    if (prevState.value !== this.state.value) {
+      const API = `http://localhost:5050/products?name=${this.state.value}`;
+
+      fetch(API, {
+        method: "GET",
+        // headers: "application/json",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            data: data,
+          });
+        })
+        .catch((err) => console.log(err));
+    }
+  }
 
   menuButtonClickHandler = () => {
     const isMenuVisible = !this.state.isMenuVisible;
@@ -80,12 +106,18 @@ class App extends Component {
                 <Search
                   click={this.menuButtonClickHandler}
                   isOpen={this.state.isMenuVisible}
+                  value={this.state.value}
+                  changeHandler={this.handleChange}
+                  result={this.state.data}
                 />
               </Route>
               <Route path="/product">
                 <Product
                   click={this.menuButtonClickHandler}
                   isOpen={this.state.isMenuVisible}
+                  value={this.state.value}
+                  changeHandler={this.handleChange}
+                  result={this.state.data}
                 />
               </Route>
               <Route path="/login">
@@ -95,7 +127,7 @@ class App extends Component {
                 <Register />
               </Route>
             </Switch>
-            <Footer />
+            {/* <Footer /> */}
           </WrapperStyled>
         </Router>
       </>

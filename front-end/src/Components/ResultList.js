@@ -42,20 +42,21 @@ const ResultStyled = styled.div`
   }
 `;
 
-const ResultList = () => {
+const ResultList = ({ data }) => {
+  const productList = data.map((product) => (
+    <ResultStyled key={product.id}>
+      <Link to="/product">
+        <p>{product.name}</p>
+      </Link>
+      <Link to="/product">
+        <img src={previewIco} />
+      </Link>
+      <img src={plusIco} />
+    </ResultStyled>
+  ));
   return (
     <ResultListWrapperStyled>
-      <ResultListStyled>
-        <ResultStyled>
-          <Link to="/product">
-            <p>Mlekpol Ser Królewski Z Kolna W Plastrach 150 G</p>
-          </Link>
-          <Link to="/product">
-            <img src={previewIco} />
-          </Link>
-          <img src={plusIco} />
-        </ResultStyled>
-      </ResultListStyled>
+      <ResultListStyled>{productList}</ResultListStyled>
     </ResultListWrapperStyled>
   );
 };

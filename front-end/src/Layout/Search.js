@@ -11,26 +11,18 @@ import backIco from "../assets/svg/backIco.svg";
 class Search extends Component {
   state = {
     value: "",
+    data: [],
   };
-  handleChange = (event) => {
-    this.setState({
-      value: event.target.value,
-    });
-    console.log(this.state.value);
-  };
-  // componentDidUpdate() {
-  //   this.handleChange = (event) => {
-  //     this.setState({ value: event.target.value });
-  //     console.log(this.state.value);
-  //   };
-  // }
 
   render() {
     return (
       <>
         <Logo />
-        <SearchBar value={this.state.value} changeHandler={this.handleChange} />
-        <ResultList />
+        <SearchBar
+          value={this.props.value}
+          changeHandler={this.props.changeHandler}
+        />
+        <ResultList data={this.props.result} />
         <Link to="/">
           <Button txt="Wstecz" img={backIco} />
         </Link>
