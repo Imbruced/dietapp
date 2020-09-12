@@ -1,9 +1,8 @@
 package pl.diet.company.dietapp.controller
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.servlet.ModelAndView
 import pl.diet.company.dietapp.domain.Product
 import pl.diet.company.dietapp.service.ProductQuery
 
@@ -11,15 +10,16 @@ import pl.diet.company.dietapp.service.ProductReader
 
 
 @RestController
+@CrossOrigin
 class ProductController(@Autowired val productQuery: ProductQuery,
                         @Autowired val productReader: ProductReader) {
 
-    @GetMapping("/all_products")
+    @GetMapping("/all_products", produces= ["application/json"])
     fun getAllProducts(): List<Product> {
         return productQuery.findAll();
     }
 
-    @GetMapping("/products")
+    @GetMapping("/products", produces=["application/json"])
     fun getProduct(@RequestParam(name="name", required = false) productName: String) : List<Product> {
         val maybeProducts = productQuery.findProductByName(productName)
         return if (maybeProducts.isEmpty()) listOf()
@@ -27,7 +27,7 @@ class ProductController(@Autowired val productQuery: ProductQuery,
 
     }
 
-    @GetMapping("/insert_products")
+    @GetMapping("/insert_products", produces= ["application/json"])
     fun insertProducts(): Unit {
         productReader.readProducts().forEach {
             it -> productQuery.save(it)
