@@ -22,7 +22,7 @@ class LoggingController(@Autowired val authenticationManager: AuthenticationMana
     @GetMapping()
     fun mainPage() = "Main page"
 
-    @PostMapping("/authenticate")
+    @PostMapping("/authenticates")
     fun createAuthenticationToken(@RequestBody authenticationRequest: AuthenticationRequest): ResponseEntity<Any>{
         try {
             authenticationManager.authenticate(

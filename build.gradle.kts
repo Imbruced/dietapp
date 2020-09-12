@@ -17,6 +17,7 @@ repositories {
 
 dependencies {
 	implementation("io.jsonwebtoken:jjwt:0.8.0")
+	implementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.2.0")
 	implementation("javax.xml.bind:jaxb-api:2.3.1")
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
