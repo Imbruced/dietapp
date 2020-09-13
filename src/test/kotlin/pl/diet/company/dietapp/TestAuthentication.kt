@@ -1,13 +1,16 @@
 package pl.diet.company.dietapp
 
-import org.junit.jupiter.api.Test
+import org.junit.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.runner.RunWith
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
+import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.web.client.HttpClientErrorException
 import pl.diet.company.dietapp.util.TestBase
 import java.lang.AssertionError
 
 @AutoConfigureDataMongo
+@RunWith(SpringRunner::class)
 class TestAuthentication : TestBase(){
 
 	@Test
