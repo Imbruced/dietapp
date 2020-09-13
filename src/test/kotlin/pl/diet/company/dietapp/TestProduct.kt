@@ -1,6 +1,6 @@
 package pl.diet.company.dietapp
 
-import org.junit.jupiter.api.Test
+import org.junit.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -25,6 +25,7 @@ import pl.diet.company.dietapp.util.TestBase
 @RunWith(SpringRunner::class)
 class TestProduct : TestBase() {
 
+    private val authenticationUrl = "/home/authenticates"
 
     private val allProductsUrl = "/all_products"
     private val filterProductUrl = "/products"
