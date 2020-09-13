@@ -17,7 +17,6 @@ repositories {
 
 dependencies {
 	implementation("io.jsonwebtoken:jjwt:0.8.0")
-	implementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.2.0")
 	implementation("javax.xml.bind:jaxb-api:2.3.1")
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -28,9 +27,10 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("com.typesafe:config:1.4.0")
-	testImplementation("org.springframework.boot:spring-boot-starter-test") {
-		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
-	}
+	implementation("com.nimbusds:nimbus-jose-jwt:9.0")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("com.github.tomakehurst:wiremock:2.27.2")
+	testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
 }
 
 tasks.withType<Test> {

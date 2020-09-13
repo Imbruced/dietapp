@@ -2,7 +2,6 @@ package pl.diet.company.dietapp.domain
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
-import org.springframework.data.mongodb.repository.Query
 import java.math.BigDecimal
 
 
