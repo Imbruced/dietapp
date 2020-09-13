@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { device } from "../utils/device";
 
 const SearchBarStyled = styled.section`
   display: flex;
@@ -12,6 +13,8 @@ const SearchBarStyled = styled.section`
   font-family: "DIN Alternate";
   font-size: 25px;
   line-height: 29px;
+  width: 100%;
+
   input {
     padding: 10px;
     width: 75vw;
@@ -20,6 +23,9 @@ const SearchBarStyled = styled.section`
     border-radius: 10px;
     color: #97bf04;
     font-family: "Courier";
+    @media ${device.laptop} {
+      width: 50vw;
+    }
   }
   input::placeholder {
     color: #c7c7c7;

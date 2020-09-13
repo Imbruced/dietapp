@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { device } from "../utils/device";
 
 import previewIco from "../assets/svg/previewIco.svg";
 import plusIco from "../assets/svg/plusIco.svg";
@@ -25,10 +26,15 @@ const ResultListStyled = styled.div`
   padding: 15px 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+  @media ${device.laptop} {
+    left: 5vw;
+    width: 65vw;
+  }
 `;
 const ResultStyled = styled.div`
   display: flex;
   flex-direction: row;
+
   a {
     max-width: 75%;
   }

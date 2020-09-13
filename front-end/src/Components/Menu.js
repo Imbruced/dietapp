@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { device } from "../utils/device";
 
 const MenuStyled = styled.div`
   background-color: #fff;
@@ -11,6 +12,12 @@ const MenuStyled = styled.div`
   left: ${(props) => (props.open ? "0" : "-80%")};
   transition: 0.2s;
   z-index: 998;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+  @media ${device.laptop} {
+    grid-area: menu;
+    left: 0;
+    width: 25%;
+  }
   .menu-list {
     list-style: none;
     margin: 20vh 5vw;
@@ -30,6 +37,9 @@ const MenuStyled = styled.div`
     border-radius: 10px;
     color: #707070;
     box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.08);
+    @media ${device.tablet} {
+      padding: 1vh 1vw;
+    }
   }
 `;
 

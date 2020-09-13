@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { device } from "../utils/device";
 
 import Logo from "../Components/Logo";
 import FormRegister from "../Components/Form.Register";
@@ -16,6 +17,9 @@ const LoginStyled = styled.section`
     color: #f2f2f2;
     font-family: "DIN Alternate";
     font-size: 18px;
+    @media ${device.tablet} {
+      font-size: 36px;
+    }
   }
 `;
 

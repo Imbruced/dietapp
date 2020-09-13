@@ -6,7 +6,7 @@ import WelcomeBar from "../Components/WelcomeBar";
 import StatBar from "../Components/StatBar";
 import Button from "../Components/Button";
 import { Link } from "react-router-dom";
-
+import { device } from "../utils/device";
 import logoutIco from "../assets/svg/output.svg";
 
 const HomeStyled = styled.section`

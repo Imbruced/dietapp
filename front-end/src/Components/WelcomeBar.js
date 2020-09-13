@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { device } from "../utils/device";
 
 const WelcomeBarStyled = styled.section`
   display: grid;
@@ -15,6 +16,9 @@ const WelcomeBarStyled = styled.section`
   color: #f2f2f2;
   font-size: 25px;
   line-height: 29px;
+  @media ${device.tablet} {
+    padding: 20px 15vw;
+  }
   .welcome-slogan {
     grid-area: welcome;
     margin: 0;

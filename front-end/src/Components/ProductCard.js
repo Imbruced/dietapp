@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { device } from "../utils/device";
+
 const ProductCardWrapperStyled = styled.section`
   display: block;
   position: relative;
@@ -21,11 +23,15 @@ const ProductCardStyled = styled.div`
   padding: 15px 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+  @media ${device.laptop} {
+    width: 65vw;
+  }
 `;
 const ProductCardInfoStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   p {
     margin-bottom: 15px;
     color: #97bf04;
@@ -39,19 +45,18 @@ const ProductCardInfoStyled = styled.div`
 `;
 
 const ProductCard = (props) => {
-  console.log(props.props.result);
   return (
     <ProductCardWrapperStyled>
       <ProductCardStyled>
         <ProductCardInfoStyled>
-          {/* <p>Mlekpol Ser Królewski Z Kolna W Plastrach 150 G</p>
+          <p>Mlekpol Ser Królewski Z Kolna W Plastrach 150 G</p>
           <div>
             <p>Wartość eneretyczna: 300kcal</p>
             <p>Białko: 300kcal</p>
             <p>Węglowodany: 300kcal</p>
             <p>Tłuszcz: 300kcal</p>
             <p>Średnia cena: 300kcal</p>
-          </div> */}
+          </div>
         </ProductCardInfoStyled>
       </ProductCardStyled>
     </ProductCardWrapperStyled>

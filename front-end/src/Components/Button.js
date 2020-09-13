@@ -9,8 +9,12 @@ const ButtonWrapperStyled = styled.div`
 
 const ButtonStyled = styled.div`
   display: flex;
+  /* position: absolute; */
+  bottom: 10vh;
+  width: 100vw;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin: 0 auto;
   font-size: 20px;
   font-family: "Beirut";
