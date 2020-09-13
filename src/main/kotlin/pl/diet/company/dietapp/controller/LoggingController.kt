@@ -1,6 +1,5 @@
 package pl.diet.company.dietapp.controller
 
-import org.apache.coyote.Response
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
@@ -23,14 +22,14 @@ class LoggingController(@Autowired val authenticationManager: AuthenticationMana
     fun mainPage() = "Main page"
 
     @PostMapping("/authenticates")
-    fun createAuthenticationToken(@RequestBody authenticationRequest: AuthenticationRequest): ResponseEntity<Any>{
+    fun createAuthenticationToken(@RequestBody authenticationRequest: AuthenticationRequest): ResponseEntity<AuthenticationResponse>{
         try {
             authenticationManager.authenticate(
                     UsernamePasswordAuthenticationToken(authenticationRequest.username, authenticationRequest.password)
             )
         }
         catch (e: BadCredentialsException){
-            throw Exception("Incorrect username or password")
+            return ResponseEntity.status(403).body(AuthenticationResponse(""))
         }
         val userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.username)

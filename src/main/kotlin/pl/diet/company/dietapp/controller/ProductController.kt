@@ -2,7 +2,6 @@ package pl.diet.company.dietapp.controller
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.servlet.ModelAndView
 import pl.diet.company.dietapp.domain.Product
 import pl.diet.company.dietapp.service.ProductQuery
 
@@ -25,12 +24,5 @@ class ProductController(@Autowired val productQuery: ProductQuery,
         return if (maybeProducts.isEmpty()) listOf()
         else maybeProducts
 
-    }
-
-    @GetMapping("/insert_products", produces= ["application/json"])
-    fun insertProducts(): Unit {
-        productReader.readProducts().forEach {
-            it -> productQuery.save(it)
-        }
     }
 }
