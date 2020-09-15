@@ -14,7 +14,7 @@ class ProductReader{
         return this::class.java.getResource(fileName).readText(Charsets.UTF_8).split("\n").map {
             it -> it.split("|")
         }.map { Product(
-                id = it[0],
+                id = it[0].toLong(),
                 name = it[1],
                 average_price = Money(BigDecimal(it[2]), "PLN"),
                 description = Description(
