@@ -8,12 +8,16 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import pl.diet.company.dietapp.builder.ProductBuilder
-import pl.diet.company.dietapp.domain.Product
+import pl.diet.company.dietapp.domain.ProductCompositionDescription
+import pl.diet.company.dietapp.domain.Money
 import pl.diet.company.dietapp.util.TestBase
 
+
+data class ProductWithoutName(val average_price: Money?, val description: ProductCompositionDescription)
+data class ProductWithoutPrice(val name: String, val description: ProductCompositionDescription)
+data class ProductWithoutDescription(val name: String, val average_price: Money?)
 
 @AutoConfigureDataMongo
 @RunWith(SpringRunner::class)
@@ -24,6 +28,9 @@ class TestAddProduct : TestBase(){
     private val builder = ProductBuilder()
 
     private val mapper = jacksonObjectMapper()
+
+    private val sampleDescription = builder.buildDescription
+    private val samplePrice = builder.buildPrice
 
     private fun createHeaders(): HttpHeaders {
         val token = generateToken()
@@ -83,16 +90,67 @@ class TestAddProduct : TestBase(){
 
     @Test
     fun `should not save the product when the name is missing`(){
-        val jsonWithoutName = ""
+
+        val sampleProductWithoutName = ProductWithoutName(samplePrice, sampleDescription)
+        val jsonProductWithoutName = mapper.writeValueAsString(sampleProductWithoutName)
+
+        val response = mvc.perform(MockMvcRequestBuilders.post(localUrl(addProductEndpointUrl))
+                .content(jsonProductWithoutName)
+                .headers(headers))
+
+        with(response){
+            andExpect(status().is4xxClientError)
+        }
     }
 
     @Test
     fun `should reject the request when the description is not send`(){
+        val sampleProductWithoutDescription = ProductWithoutDescription(
+                name = "jogurt",
+                average_price = samplePrice
+        )
+
+        val jsonProductWithoutDescription = mapper.writeValueAsString(sampleProductWithoutDescription)
+
+        val response = mvc.perform(MockMvcRequestBuilders.post(localUrl(addProductEndpointUrl))
+                .content(jsonProductWithoutDescription)
+                .headers(headers))
+
+        with(response){
+            andExpect(status().is4xxClientError)
+        }
 
     }
 
     @Test
     fun `should reject the request when any of description field is not valid`(){
+
+        //TODO change to table like tests
+
+        val invalidDescriptions = listOf(
+                builder.buildDescription.withCarbo(-10.0),
+                builder.buildDescription.withFat(-20.0),
+                builder.buildDescription.withKcal(-400.0),
+                builder.buildDescription.withProtein(-15.0)
+        )
+
+        invalidDescriptions.forEach { invalidDescription ->
+            val productWithWrongDescription = builder.buildProductRequest
+                    .withDescription(invalidDescription)
+            val productWithWrongDescriptionJson = mapper
+                    .writeValueAsString(productWithWrongDescription)
+
+            val response = mvc.perform(MockMvcRequestBuilders.post(localUrl(addProductEndpointUrl))
+                    .content(productWithWrongDescriptionJson)
+                    .headers(headers))
+
+            with(response){
+                andExpect(status().is4xxClientError)
+            }
+
+        }
+
+
 
     }
 

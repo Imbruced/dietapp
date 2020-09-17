@@ -29,7 +29,10 @@ class ProductController(@Autowired val productQuery: ProductQuery) {
     @PostMapping("/product")
     fun addProduct(@RequestBody product: ProductRequest): ResponseEntity<Long> {
         val insertedId = productQuery.save(product)
-        return ResponseEntity.ok().body(insertedId)
+
+        return if (product.validate()){
+            ResponseEntity.ok().body(insertedId)
+        } else ResponseEntity.badRequest().body(-1)
     }
 
     @DeleteMapping("/product")

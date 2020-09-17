@@ -9,19 +9,41 @@ data class Money(val value: BigDecimal, val currency: String){
 
     fun withValue(value: BigDecimal): Money = this.copy(value=value)
     fun withCurrency(currency: String): Money = this.copy(currency=currency)
+
+    // TODO add validation for money
+    fun validate(): Boolean = true
 }
 
-data class Measurement(val value: Double, val unit: String){
+data class PositiveMeasurement(val value: Double, val unit: String){
 
-    fun withValue(value: Double): Measurement = this.copy(value=value)
-    fun withUnit(unit: String): Measurement = this.copy(unit=unit)
+    fun  validate(): Boolean = value >= 0.0
+    fun withValue(value: Double): PositiveMeasurement = this.copy(value=value)
+    fun withUnit(unit: String): PositiveMeasurement = this.copy(unit=unit)
 }
-data class Description(val kcal: Measurement, val fat: Measurement, val carbo: Measurement, val protein: Measurement)
+
+data class ProductCompositionDescription(val kcal: PositiveMeasurement, val fat: PositiveMeasurement, val carbo: PositiveMeasurement, val protein: PositiveMeasurement){
+
+    fun validate(): Boolean {
+        return listOf(kcal, fat, carbo, protein).all {
+            measurement -> measurement.validate()
+        }
+    }
+
+    fun withKcal(value: Double) = this.copy(kcal= PositiveMeasurement(value, "kcal"))
+    fun withFat(value: Double) = this.copy(fat = PositiveMeasurement(value, "g"))
+    fun withCarbo(value: Double) = this.copy(carbo = PositiveMeasurement(value, "g"))
+    fun withProtein(value: Double) = this.copy(protein = PositiveMeasurement(value, "g"))
+}
 
 @Document
-data class Product(@Id val id: Long, val name: String, val average_price: Money?, val description: Description)
+data class Product(@Id val id: Long, val name: String, val average_price: Money?, val description: ProductCompositionDescription)
 
-data class ProductRequest(val name: String, val average_price: Money?, val description: Description){
+data class ProductRequest(val name: String, val average_price: Money?, val description: ProductCompositionDescription){
+
+    fun validate(): Boolean {
+        return description.validate()
+    }
+
     fun toProduct(id: Long): Product =
         Product(
                 id = id,
@@ -32,6 +54,6 @@ data class ProductRequest(val name: String, val average_price: Money?, val descr
 
     fun withName(name: String): ProductRequest = this.copy(name=name)
     fun withPrice(price: Money): ProductRequest = this.copy(average_price = price)
-    fun withDescription(description: Description) = this.copy(description = description)
+    fun withDescription(description: ProductCompositionDescription) = this.copy(description = description)
 
 }
