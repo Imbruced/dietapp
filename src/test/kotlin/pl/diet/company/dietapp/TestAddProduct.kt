@@ -13,6 +13,7 @@ import pl.diet.company.dietapp.builder.ProductBuilder
 import pl.diet.company.dietapp.domain.ProductCompositionDescription
 import pl.diet.company.dietapp.domain.Money
 import pl.diet.company.dietapp.util.TestBase
+import java.math.BigDecimal
 
 
 data class ProductWithoutName(val average_price: Money?, val description: ProductCompositionDescription)
@@ -21,29 +22,12 @@ data class ProductWithoutDescription(val name: String, val average_price: Money?
 
 @AutoConfigureDataMongo
 @RunWith(SpringRunner::class)
-class TestAddProduct : TestBase(){
+class TestAddProduct : TestBase() {
 
     private val addProductEndpointUrl = "/product"
 
-    private val builder = ProductBuilder()
-
-    private val mapper = jacksonObjectMapper()
-
-    private val sampleDescription = builder.buildDescription
-    private val samplePrice = builder.buildPrice
-
-    private fun createHeaders(): HttpHeaders {
-        val token = generateToken()
-        val headers = HttpHeaders()
-        headers.contentType = MediaType.APPLICATION_JSON
-        headers.add("Authorization", "Bearer $token")
-        return headers
-    }
-
-    private val headers = createHeaders()
-
     @Test
-    fun `should correctly insert product to the database`(){
+    fun `should correctly insert product to the database`() {
         // given
 
         val description = builder.buildDescription
@@ -56,19 +40,19 @@ class TestAddProduct : TestBase(){
         // when
         val response = mvc.perform(MockMvcRequestBuilders.post(localUrl(addProductEndpointUrl))
                 .content(mapper.writeValueAsString(sampleProductRequest))
-                .headers(headers))
+                .headers(authenticatedHeaders))
 
         // then
 
-        with(response){
-            response.andExpect(status().isOk)
-            response.andReturn().response.contentAsString.toInt() != -1
+        with(response) {
+            andExpect(status().isOk)
+            andReturn().response.contentAsString.toInt() != -1
         }
 
     }
 
     @Test
-    fun `should correctly reject product when empty json is sent`(){
+    fun `should correctly reject product when empty json is sent`() {
         // given empty json
         val emptyJson = "{}"
 
@@ -77,34 +61,34 @@ class TestAddProduct : TestBase(){
 
         val response = mvc.perform(MockMvcRequestBuilders.post(localUrl(addProductEndpointUrl))
                 .content(emptyJson)
-                .headers(headers))
+                .headers(authenticatedHeaders))
 
 
         // then
         // result should be
 
-        with(response){
+        with(response) {
             andExpect(status().is4xxClientError)
         }
     }
 
     @Test
-    fun `should not save the product when the name is missing`(){
+    fun `should not save the product when the name is missing`() {
 
         val sampleProductWithoutName = ProductWithoutName(samplePrice, sampleDescription)
         val jsonProductWithoutName = mapper.writeValueAsString(sampleProductWithoutName)
 
         val response = mvc.perform(MockMvcRequestBuilders.post(localUrl(addProductEndpointUrl))
                 .content(jsonProductWithoutName)
-                .headers(headers))
+                .headers(authenticatedHeaders))
 
-        with(response){
+        with(response) {
             andExpect(status().is4xxClientError)
         }
     }
 
     @Test
-    fun `should reject the request when the description is not send`(){
+    fun `should reject the request when the description is not send`() {
         val sampleProductWithoutDescription = ProductWithoutDescription(
                 name = "jogurt",
                 average_price = samplePrice
@@ -114,16 +98,16 @@ class TestAddProduct : TestBase(){
 
         val response = mvc.perform(MockMvcRequestBuilders.post(localUrl(addProductEndpointUrl))
                 .content(jsonProductWithoutDescription)
-                .headers(headers))
+                .headers(authenticatedHeaders))
 
-        with(response){
+        with(response) {
             andExpect(status().is4xxClientError)
         }
 
     }
 
     @Test
-    fun `should reject the request when any of description field is not valid`(){
+    fun `should reject the request when any of description field is not valid`() {
 
         //TODO change to table like tests
 
@@ -142,36 +126,72 @@ class TestAddProduct : TestBase(){
 
             val response = mvc.perform(MockMvcRequestBuilders.post(localUrl(addProductEndpointUrl))
                     .content(productWithWrongDescriptionJson)
-                    .headers(headers))
+                    .headers(authenticatedHeaders))
 
-            with(response){
+            with(response) {
                 andExpect(status().is4xxClientError)
             }
 
         }
 
 
-
     }
 
     @Test
-    fun `should reject the request when any of price data field is not valid`(){
+    fun `should reject the request when any of price data field is not valid`() {
+        val invalidPriceData = Money(
+                BigDecimal.valueOf(-110.0),
+                "PLN"
+        )
 
+        val productWithIncorrectPriceData = builder
+                .buildProductRequest
+                .withPrice(invalidPriceData)
+
+        val jsonProductWithInvalidPriceData = mapper.writeValueAsString(productWithIncorrectPriceData)
+
+        val response = mvc.perform(MockMvcRequestBuilders.post(localUrl(addProductEndpointUrl))
+                .content(jsonProductWithInvalidPriceData)
+                .headers(authenticatedHeaders))
+
+        with(response) {
+            andExpect(status().is4xxClientError)
+        }
     }
 
     @Test
-    fun `should reject product creation when client is not authenticated`(){
+    fun `should reject product creation when client is not authenticated`() {
+        val productWithIncorrectPriceData = builder
+                .buildProductRequest
 
+        val jsonProductWithInvalidPriceData = mapper.writeValueAsString(productWithIncorrectPriceData)
+
+        val response = mvc.perform(MockMvcRequestBuilders.post(localUrl(addProductEndpointUrl))
+                .content(jsonProductWithInvalidPriceData)
+                .headers(unauthenticatedHeaders))
+
+        with(response) {
+            andExpect(status().is4xxClientError)
+        }
     }
 
     @Test
     fun `should not reject product when the price data is missing`() {
+        val exampleDescription = builder.buildDescription
+        val productWithoutPrice = ProductWithoutPrice(
+                name = "jogurt",
+                description = exampleDescription
+        )
 
-    }
+        val jsonProductWithoutPriceData = mapper.writeValueAsString(productWithoutPrice)
 
-    @Test
-    fun `should reject when name field is not valid`(){
+        val response = mvc.perform(MockMvcRequestBuilders.post(localUrl(addProductEndpointUrl))
+                .content(jsonProductWithoutPriceData)
+                .headers(authenticatedHeaders))
 
+        with(response) {
+            andExpect(status().isOk)
+        }
     }
 
 }

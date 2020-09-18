@@ -38,6 +38,9 @@ class ProductController(@Autowired val productQuery: ProductQuery) {
     @DeleteMapping("/product")
     fun removeProduct(@RequestParam("id") id: Long): ResponseEntity<Long> {
         val productId = productQuery.remove(id)
-        return ResponseEntity.ok().body(productId)
+        return if (productId == -1L){
+            ResponseEntity.badRequest().body(productId)
+        }else ResponseEntity.ok().body(productId)
+
     }
 }

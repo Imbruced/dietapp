@@ -10,8 +10,7 @@ data class Money(val value: BigDecimal, val currency: String){
     fun withValue(value: BigDecimal): Money = this.copy(value=value)
     fun withCurrency(currency: String): Money = this.copy(currency=currency)
 
-    // TODO add validation for money
-    fun validate(): Boolean = true
+    fun validate(): Boolean = value >= BigDecimal.valueOf(0.0)
 }
 
 data class PositiveMeasurement(val value: Double, val unit: String){
@@ -41,7 +40,9 @@ data class Product(@Id val id: Long, val name: String, val average_price: Money?
 data class ProductRequest(val name: String, val average_price: Money?, val description: ProductCompositionDescription){
 
     fun validate(): Boolean {
-        return description.validate()
+        return if (average_price != null){
+            average_price.validate() && description.validate()
+        } else description.validate()
     }
 
     fun toProduct(id: Long): Product =
