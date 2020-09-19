@@ -1,63 +1,21 @@
 import React, { Component } from "react";
-import "./style/App.css";
-import styled, { createGlobalStyle } from "styled-components";
+
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import { device } from "./utils/device";
 
 import Home from "./Layout/Home";
 import Search from "./Layout/Search";
 import Product from "./Layout/Product";
 import Login from "./Layout/Login";
 import Register from "./Layout/Register";
+import MyDiary from "./Layout/MyDiary";
 
 import Hamburger from "./Components/Hamburger";
 import Menu from "./Components/Menu";
 import Footer from "./Components/Footer";
 
-const GlobalStyle = createGlobalStyle`
-      body{
-        overflow-x: hidden;
-        width:100vw;
-}
-
-    body, h1,h2,h3,h4,h5,h6{
-        margin:0;
-        padding:0;
-        font-family: "Charter";
-        font-weight: 100;
-        font-style: italic;
-        color: #323232;
-    }
-    *, *::before, *::after{
-        box-sizing: border-box;   
-        margin: 0;
-        padding: 0; 
-    }
-    *:focus {
-    outline: none;
-}
-a{    text-decoration: none;}
-`;
-
-const WrapperStyled = styled.main`
-  display: block;
-  position: relative;
-  min-height: 100vh;
-  @media ${device.laptop} {
-    grid-area: main;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-  }
-`;
-const DesktopWrapper = styled.div`
-  @media ${device.laptop} {
-    display: grid;
-    grid-template-columns: 25% 85%;
-    grid-template-rows: auto;
-    grid-template-areas: "menu main";
-  }
-`;
+import { GlobalStyle } from "./App.style";
+import { WrapperStyled } from "./App.style";
+import { DesktopWrapper } from "./App.style";
 
 class App extends Component {
   state = {
@@ -141,6 +99,9 @@ class App extends Component {
                 </Route>
                 <Route path="/register">
                   <Register />
+                </Route>
+                <Route path="/my-diary">
+                  <MyDiary />
                 </Route>
               </Switch>
               {/* <Footer /> */}
