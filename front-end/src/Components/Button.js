@@ -1,40 +1,14 @@
 import React from "react";
-import styled from "styled-components";
-
-const ButtonWrapperStyled = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-`;
-
-const ButtonStyled = styled.div`
-  display: flex;
-  /* position: absolute; */
-  bottom: 10vh;
-  width: 100vw;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  font-size: 20px;
-  font-family: "Beirut";
-  color: #707070;
-  img {
-    display: block;
-    margin: 5px;
-    width: 32px;
-    height: 32px;
-  }
-`;
+import { StyledBackButton } from "./styled-components/Buttons.style";
 
 const Button = ({ txt, img }) => {
   return (
-    <ButtonWrapperStyled>
-      <ButtonStyled className="button">
+    <StyledBackButton className="button">
+      <div>
         <img src={img} />
         {txt}
-      </ButtonStyled>
-    </ButtonWrapperStyled>
+      </div>
+    </StyledBackButton>
   );
 };
 

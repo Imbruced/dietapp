@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import "./style/style.css";
 
-import Home from "./Layout/Home";
-import Search from "./Layout/Search";
-import Product from "./Layout/Product";
-import Login from "./Layout/Login";
-import Register from "./Layout/Register";
-import MyDiary from "./Layout/MyDiary";
+import Home from "./Templates/Home/Home";
+import Search from "./Templates/Search/Search";
+import Product from "./Templates/Product/Product";
+import Login from "./Templates/Login/Login";
+import Register from "./Templates/Register/Register";
+import Diary from "./Templates/Diary/Diary";
 
 import Hamburger from "./Components/Hamburger";
 import Menu from "./Components/Menu";
@@ -101,7 +101,7 @@ class App extends Component {
                   <Register />
                 </Route>
                 <Route path="/my-diary">
-                  <MyDiary />
+                  <Diary />
                 </Route>
               </Switch>
               {/* <Footer /> */}

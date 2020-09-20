@@ -1,17 +1,14 @@
-import React from "react";
 import styled from "styled-components";
-import { device } from "../utils/device";
+import { device } from "../../utils/device";
 
-import Logo from "../Components/Logo";
-
-const MyDiaryStyled = styled.section`
+export const MyDiaryStyled = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #97bf04;
   height: 30vh;
 `;
-const MyDiaryCard = styled.article`
+export const MyDiaryCard = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,25 +22,10 @@ const MyDiaryCard = styled.article`
     width: 65vw;
   }
 `;
-const MyDiaryCardTriangle = styled.section`
+export const MyDiaryCardTriangle = styled.section`
   display: block;
   position: relative;
   border-style: solid;
   border-width: 0 100vw 40vh 0;
   border-color: transparent #97bf04 transparent transparent;
 `;
-const MyDiary = () => {
-  return (
-    <>
-      <Logo />
-      <MyDiaryStyled>
-        <MyDiaryCard>
-          <p>hej</p>
-        </MyDiaryCard>
-      </MyDiaryStyled>
-      <MyDiaryCardTriangle></MyDiaryCardTriangle>
-    </>
-  );
-};
-
-export default MyDiary;
