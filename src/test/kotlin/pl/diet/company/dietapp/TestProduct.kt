@@ -21,7 +21,6 @@ import pl.diet.company.dietapp.util.TestBase
 
 
 @AutoConfigureDataMongo
-@AutoConfigureMockMvc
 @RunWith(SpringRunner::class)
 class TestProduct : TestBase() {
 
@@ -29,9 +28,6 @@ class TestProduct : TestBase() {
 
     private val allProductsUrl = "/all_products"
     private val filterProductUrl = "/products"
-
-    @Autowired
-    lateinit var mvc: MockMvc
 
     @Test
     fun `should not allow to see all the products when client is not authenticated`() {
@@ -55,7 +51,7 @@ class TestProduct : TestBase() {
     fun `should allow to see all the products when the user is authenticated`() {
 
         // given
-        val token = JwtUtil().generateToken(User("user", "password", listOf<GrantedAuthority>()))
+        val token = generateToken()
 
 
         // when
@@ -71,7 +67,7 @@ class TestProduct : TestBase() {
     @Test
     fun `should allow to see filtered products when the user is authenticated`() {
         // given
-        val token = JwtUtil().generateToken(User("user", "password", listOf<GrantedAuthority>()))
+        val token = generateToken()
 
 
         // when

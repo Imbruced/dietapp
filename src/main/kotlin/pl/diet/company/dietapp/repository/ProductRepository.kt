@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 import pl.diet.company.dietapp.domain.Product
 
 @Component
-interface ProductRepository : MongoRepository<Product, String> {
+interface ProductRepository : MongoRepository<Product, Long> {
     @Query("{ \'name\' : { \$regex: ?0 } }")
     fun findProductByName(name: String): List<Product>
 }
