@@ -6,7 +6,7 @@ import org.junit.runner.RunWith
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.web.client.HttpClientErrorException
-import pl.diet.company.dietapp.util.TestBase
+import pl.diet.company.dietapp.security.util.TestBase
 import java.lang.AssertionError
 
 @AutoConfigureDataMongo

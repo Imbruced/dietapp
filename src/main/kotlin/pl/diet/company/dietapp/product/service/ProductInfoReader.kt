@@ -1,7 +1,7 @@
-package pl.diet.company.dietapp.service
+package pl.diet.company.dietapp.product.service
 
 import org.springframework.stereotype.Service
-import pl.diet.company.dietapp.domain.Product
+import pl.diet.company.dietapp.product.domain.Product
 
 @Service
 class ProductInfoReader(val productReader: ProductReader) {

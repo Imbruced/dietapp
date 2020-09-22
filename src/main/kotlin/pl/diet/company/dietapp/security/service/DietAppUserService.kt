@@ -1,4 +1,4 @@
-package pl.diet.company.dietapp.service
+package pl.diet.company.dietapp.security.service
 
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.User

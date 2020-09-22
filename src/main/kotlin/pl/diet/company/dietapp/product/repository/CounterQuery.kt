@@ -1,4 +1,4 @@
-package pl.diet.company.dietapp.repository
+package pl.diet.company.dietapp.product.repository
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.core.MongoTemplate

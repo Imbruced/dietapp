@@ -1,4 +1,4 @@
-package pl.diet.company.dietapp.controller
+package pl.diet.company.dietapp.security.controller
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -6,10 +6,10 @@ import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.web.bind.annotation.*
-import pl.diet.company.dietapp.domain.AuthenticationRequest
-import pl.diet.company.dietapp.domain.AuthenticationResponse
-import pl.diet.company.dietapp.service.DietAppUserService
-import pl.diet.company.dietapp.util.JwtUtil
+import pl.diet.company.dietapp.security.domain.AuthenticationRequest
+import pl.diet.company.dietapp.security.domain.AuthenticationResponse
+import pl.diet.company.dietapp.security.service.DietAppUserService
+import pl.diet.company.dietapp.security.util.JwtUtil
 
 @RestController
 @RequestMapping("/home")

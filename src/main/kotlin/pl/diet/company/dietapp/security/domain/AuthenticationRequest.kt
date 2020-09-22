@@ -1,4 +1,4 @@
-package pl.diet.company.dietapp.domain
+package pl.diet.company.dietapp.security.domain
 
 data class AuthenticationRequest(val username: String, val password: String)
 

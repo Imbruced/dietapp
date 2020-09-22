@@ -1,4 +1,4 @@
-package pl.diet.company.dietapp.domain
+package pl.diet.company.dietapp.product.domain
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -46,12 +46,12 @@ data class ProductRequest(val name: String, val average_price: Money?, val descr
     }
 
     fun toProduct(id: Long): Product =
-        Product(
-                id = id,
-                name=name,
-                average_price = average_price,
-                description = description
-        )
+            Product(
+                    id = id,
+                    name = name,
+                    average_price = average_price,
+                    description = description
+            )
 
     fun withName(name: String): ProductRequest = this.copy(name=name)
     fun withPrice(price: Money): ProductRequest = this.copy(average_price = price)

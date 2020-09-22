@@ -1,4 +1,4 @@
-package pl.diet.company.dietapp.util
+package pl.diet.company.dietapp.security.util
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.tomakehurst.wiremock.client.WireMock
@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.User
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.client.RestTemplate
 import pl.diet.company.dietapp.builder.ProductBuilder
-import pl.diet.company.dietapp.domain.AuthenticationResponse
+import pl.diet.company.dietapp.security.domain.AuthenticationResponse
 import javax.security.auth.callback.ConfirmationCallback
 
 
