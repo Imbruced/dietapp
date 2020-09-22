@@ -1,14 +1,16 @@
 package pl.diet.company.dietapp.builder
 
-import pl.diet.company.dietapp.registration.domain.User
+import org.springframework.stereotype.Service
+import pl.diet.company.dietapp.registration.domain.DietAppUser
 
+@Service
 class UserBuilder {
 
     companion object{
-        val buildUser = User(
+        val buildUser = DietAppUser(
                 "firstname",
-                "lastname",
                 "password",
+                "lastname",
                 "password",
                 "email@email.com"
         )

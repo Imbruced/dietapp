@@ -11,3 +11,4 @@ script:
   - ./gradlew test --tests "pl.diet.company.dietapp.TestAddProduct"
   - ./gradlew test --tests "pl.diet.company.dietapp.TestProductRemove"
   - ./gradlew test --tests "pl.diet.company.dietapp.unit.TestUserRegistration"
+  - ./gradlew test --tests "pl.diet.company.dietapp.TestUserRegistration"
