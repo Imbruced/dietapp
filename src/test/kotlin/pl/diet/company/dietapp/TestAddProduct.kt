@@ -1,6 +1,6 @@
 package pl.diet.company.dietapp
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
 import org.springframework.test.context.junit4.SpringRunner

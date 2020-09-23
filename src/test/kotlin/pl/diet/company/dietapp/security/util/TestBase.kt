@@ -4,6 +4,11 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.junit.WireMockRule
 import com.nimbusds.jose.jwk.gen.RSAKeyGenerator
+import org.junit.Test
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -14,17 +19,28 @@ import org.springframework.http.ResponseEntity
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.User
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.ResultActions
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.web.client.RestTemplate
 import pl.diet.company.dietapp.builder.ProductBuilder
+import pl.diet.company.dietapp.builder.UserBuilder
+import pl.diet.company.dietapp.registration.domain.DietAppUser
 import pl.diet.company.dietapp.security.domain.AuthenticationResponse
+import pl.diet.company.dietapp.security.service.DietAppUserService
 import javax.security.auth.callback.ConfirmationCallback
 
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class TestBase {
 
+    @Autowired
+    lateinit var dietUserService: DietAppUserService
+
     private val authenticationUrl = "/home/authenticates"
+    private val userRegistrationPath = "/registration/user"
+    private val userRemovalPath = "/registration/user"
 
     val builder = ProductBuilder()
 
@@ -33,6 +49,30 @@ class TestBase {
     val sampleDescription = builder.buildDescription
     val samplePrice = builder.buildPrice
 
+    val userBuilder = UserBuilder
+
+    val sampleUser = userBuilder.buildUser
+            .withEmail("email@email.com")
+            .withPassword("password")
+
+    @BeforeAll
+    fun registerSampleUser(){
+        addUser(sampleUser)
+    }
+
+    @AfterAll
+    fun removeSampleUser(){
+        removeUser(sampleUser.email)
+    }
+
+//    @BeforeEach
+//    fun clearUsers(){
+//        val emails = listOf(sampleUser.email)
+//
+//        emails.forEach{
+//            dietUserService.removeUser(it)
+//        }
+//    }
 
     @Autowired
     lateinit var restTemplate: RestTemplate
@@ -67,8 +107,8 @@ class TestBase {
     fun generateToken(): String =
             JwtUtil().generateToken(
                     User(
-                            "user",
-                            "password",
+                            sampleUser.email,
+                            sampleUser.password,
                             listOf<GrantedAuthority>())
             )
 
@@ -89,5 +129,27 @@ class TestBase {
 
     val authenticatedHeaders = createHeaders()
     val unauthenticatedHeaders = createUnAuthenticatedHeaders()
+
+    fun addUser(user: DietAppUser): Boolean {
+        return dietUserService.addUser(user)
+    }
+    fun registerUser(user: DietAppUser): ResultActions {
+        val userJson = mapper.writeValueAsString(user)
+
+        return mvc.perform(MockMvcRequestBuilders
+                .post(localUrl(userRegistrationPath))
+                .headers(authenticatedHeaders)
+                .content(userJson)
+        )
+    }
+
+    fun removeUser(email: String){
+        dietUserService.removeUser(email)
+    }
+
+    @Test
+    fun mockTest(){
+        // TODO remove that mock test which fails with jupiter api
+    }
 
 }

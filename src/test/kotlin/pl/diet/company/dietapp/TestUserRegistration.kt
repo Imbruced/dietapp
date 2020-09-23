@@ -14,20 +14,14 @@ import pl.diet.company.dietapp.security.util.TestBase
 @RunWith(SpringRunner::class)
 class TestUserRegistration() : TestBase() {
 
-    private val userRegistrationPath = "/registration/user"
-    private val userRemovalPath = "/registration/user"
-    private val userBuilder = UserBuilder
     private val validEmail = "james.hetfield@email.com"
     private val validFirstName = "james"
     private val validLastName = "hetfield"
     private val validPassword = "metallica.01"
     private val invalidEmailAddress = "email.com"
 
-    @Autowired
-    lateinit var dietUserService: DietAppUserService
-
     @BeforeEach
-    fun clearUsers(){
+    fun clearUsersRegistration(){
         val emails = listOf(validEmail, invalidEmailAddress)
 
         emails.forEach{
@@ -40,22 +34,15 @@ class TestUserRegistration() : TestBase() {
 
         // TODO remove additional jwt creation while user registration process
         // given
-        val token = generateToken()
         val validUser = userBuilder.buildUser
                 .withEmail(validEmail)
                 .withFirstName(validFirstName)
                 .withLastName(validLastName)
                 .withMatchingPassword(validPassword)
                 .withPassword(validPassword)
-
-        val validUserJson = mapper.writeValueAsString(validUser)
-
         // when
-        val response = mvc.perform(MockMvcRequestBuilders
-                .post(localUrl(userRegistrationPath))
-                .headers(authenticatedHeaders)
-                .content(validUserJson)
-        )
+        val response = registerUser(validUser)
+
         //then
 
         with(response) {
@@ -67,19 +54,14 @@ class TestUserRegistration() : TestBase() {
     fun `should reject user creation when form is invalid`(){
 
         // given
-        val token = generateToken()
         val invalidUser = userBuilder.buildUser
+                .withEmail(validEmail)
                 .withMatchingPassword(validPassword)
                 .withPassword(validPassword + "some_word")
 
-        val invalidUserJson = mapper.writeValueAsString(invalidUser)
-
         // when
 
-        val response = mvc.perform(MockMvcRequestBuilders
-                .post(localUrl(userRegistrationPath))
-                .headers(authenticatedHeaders)
-                .content(invalidUserJson))
+        val response = registerUser(invalidUser)
 
         // then
 
@@ -92,19 +74,13 @@ class TestUserRegistration() : TestBase() {
     fun `should not register when email already exists`(){
 
         // given
-        val token = generateToken()
-        val invalidUser = userBuilder.buildUser
+        val validUser = userBuilder.buildUser
+                .withEmail(validEmail)
                 .withMatchingPassword(validPassword)
                 .withPassword(validPassword)
-
-        val validUserJson = mapper.writeValueAsString(invalidUser)
-
         // when
 
-        val response = mvc.perform(MockMvcRequestBuilders
-                .post(localUrl(userRegistrationPath))
-                .headers(authenticatedHeaders)
-                .content(validUserJson))
+        val response = registerUser(validUser)
 
         // then
 
@@ -114,10 +90,7 @@ class TestUserRegistration() : TestBase() {
 
         // when trying to create account again
 
-        val secondResponse = mvc.perform(MockMvcRequestBuilders
-                .post(localUrl(userRegistrationPath))
-                .headers(authenticatedHeaders)
-                .content(validUserJson))
+        val secondResponse = registerUser(validUser)
 
         // then
         with(secondResponse){

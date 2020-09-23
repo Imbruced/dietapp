@@ -12,7 +12,6 @@ import pl.diet.company.dietapp.security.util.TestBase
 @RunWith(SpringRunner::class)
 class TestUserRegistration: TestBase(){
 
-    private val userBuilder = UserBuilder
     private val validUserEmail = "email@email.com"
     private val validPasswordSample = "password1"
     private val validPasswordSample2 = "password2"

@@ -1,6 +1,7 @@
 package pl.diet.company.dietapp
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.assertThrows
 import org.junit.runner.RunWith
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
@@ -17,7 +18,7 @@ class TestAuthentication : TestBase(){
 	fun testValidAuthentication() {
 
 		//given
-		val body = "{\"username\": \"user\", \"password\": \"password\"}"
+		val body = "{\"username\": \"" + sampleUser.email + "\", \"password\": \"" + sampleUser.password + "\"}"
 
 		//when
 		val response = getAuthenticationToken(body)
@@ -40,7 +41,7 @@ class TestAuthentication : TestBase(){
 	@Test
 	fun testInvalidAuthentication(){
 		//given
-		val body = "{\"username\": \"user\", \"password\": \"not_valid_password\"}"
+		val body = "{\"username\": \"" + sampleUser.email + "\", \"password\": \"not_valid_password\"}"
 
 		//then
 		assertThrows<HttpClientErrorException> { getAuthenticationToken(body) }
