@@ -3,12 +3,9 @@ package pl.diet.company.dietapp
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.BeforeEach
 import org.junit.runner.RunWith
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import pl.diet.company.dietapp.builder.UserBuilder
-import pl.diet.company.dietapp.security.service.DietAppUserService
 import pl.diet.company.dietapp.security.util.TestBase
 
 @RunWith(SpringRunner::class)
