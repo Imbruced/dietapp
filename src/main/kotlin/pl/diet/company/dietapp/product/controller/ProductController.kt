@@ -1,12 +1,11 @@
-package pl.diet.company.dietapp.controller
+package pl.diet.company.dietapp.product.controller
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import pl.diet.company.dietapp.domain.Product
-import pl.diet.company.dietapp.domain.ProductRequest
-import pl.diet.company.dietapp.repository.CounterQuery
-import pl.diet.company.dietapp.repository.ProductQuery
+import pl.diet.company.dietapp.product.domain.Product
+import pl.diet.company.dietapp.product.domain.ProductRequest
+import pl.diet.company.dietapp.product.repository.ProductQuery
 
 
 @RestController

@@ -1,9 +1,9 @@
-package pl.diet.company.dietapp.repository
+package pl.diet.company.dietapp.product.repository
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import pl.diet.company.dietapp.domain.Product
-import pl.diet.company.dietapp.domain.ProductRequest
+import pl.diet.company.dietapp.product.domain.Product
+import pl.diet.company.dietapp.product.domain.ProductRequest
 
 @Service
 class ProductQuery(@Autowired val productRepository: ProductRepository, @Autowired val counterQuery: CounterQuery){

@@ -1,4 +1,4 @@
-package pl.diet.company.dietapp.util
+package pl.diet.company.dietapp.security.util
 
 import applicationSecret
 import io.jsonwebtoken.Claims

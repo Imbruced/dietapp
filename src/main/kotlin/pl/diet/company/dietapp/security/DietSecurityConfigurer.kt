@@ -11,8 +11,8 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.password.NoOpPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
-import pl.diet.company.dietapp.filter.JwtRequestFilter
-import pl.diet.company.dietapp.service.DietAppUserService
+import pl.diet.company.dietapp.security.filter.JwtRequestFilter
+import pl.diet.company.dietapp.security.service.DietAppUserService
 
 @EnableWebSecurity
 class DietSecurityConfigurer(@Autowired val dietAppUserService: DietAppUserService,
@@ -24,7 +24,7 @@ class DietSecurityConfigurer(@Autowired val dietAppUserService: DietAppUserServi
 
     override fun configure(http: HttpSecurity) {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/home/authenticates")
+                .authorizeRequests().antMatchers("/home/authenticates", "/registration/user")
                 .permitAll().anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

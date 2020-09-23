@@ -1,18 +1,14 @@
 package pl.diet.company.dietapp
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
-import org.springframework.http.HttpHeaders
-import org.springframework.http.MediaType
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import pl.diet.company.dietapp.builder.ProductBuilder
-import pl.diet.company.dietapp.domain.ProductCompositionDescription
-import pl.diet.company.dietapp.domain.Money
-import pl.diet.company.dietapp.util.TestBase
+import pl.diet.company.dietapp.product.domain.ProductCompositionDescription
+import pl.diet.company.dietapp.product.domain.Money
+import pl.diet.company.dietapp.security.util.TestBase
 import java.math.BigDecimal
 
 
