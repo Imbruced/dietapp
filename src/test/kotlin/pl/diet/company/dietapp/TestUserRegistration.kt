@@ -100,16 +100,49 @@ class TestUserRegistration() : TestBase() {
 
     @Test
     fun `should reject remove user when email does not exists`(){
+        // given
+        val response = mvc.perform(MockMvcRequestBuilders
+                .delete(localUrl(userRegistrationPath))
+                .headers(authenticatedHeaders)
+                .content(validEmail)
+        )
 
+        with(response){
+            andExpect(MockMvcResultMatchers.status().`is`(409))
+        }
     }
 
     @Test
     fun `should remove user when email specified is valid`(){
+        val validUser = userBuilder.buildUser
+                .withEmail(validEmail)
+                .withMatchingPassword(validPassword)
+                .withPassword(validPassword)
+
+        registerUser(validUser)
+
+        val response = mvc.perform(MockMvcRequestBuilders
+                .delete(localUrl(userRegistrationPath))
+                .headers(authenticatedHeaders)
+                .content(validEmail)
+        )
+
+        with(response){
+            andExpect(MockMvcResultMatchers.status().`is`(200))
+        }
 
     }
 
     @Test
     fun `should reject user removing when user is not authenticated`(){
+        val response = mvc.perform(MockMvcRequestBuilders
+                .delete(localUrl(userRegistrationPath))
+                .headers(unauthenticatedHeaders)
+                .content(validEmail)
+        )
 
+        with(response){
+            andExpect(MockMvcResultMatchers.status().`is`(409))
+        }
     }
 }

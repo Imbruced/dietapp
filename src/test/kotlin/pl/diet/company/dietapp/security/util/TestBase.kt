@@ -39,7 +39,7 @@ class TestBase {
     lateinit var dietUserService: DietAppUserService
 
     private val authenticationUrl = "/home/authenticates"
-    private val userRegistrationPath = "/registration/user"
+    val userRegistrationPath = "/registration/user"
     private val userRemovalPath = "/registration/user"
 
     val builder = ProductBuilder()

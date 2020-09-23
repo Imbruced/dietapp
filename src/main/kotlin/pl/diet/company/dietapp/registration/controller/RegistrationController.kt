@@ -33,6 +33,6 @@ class RegistrationController {
     fun removeUser(@RequestBody email: String): ResponseEntity<String> {
         return if (userService.removeUser(email)){
             ResponseEntity.ok(email)
-        }else ResponseEntity.badRequest().body(email)
+        }else ResponseEntity.status(409).body(email)
     }
 }
