@@ -26,6 +26,13 @@ services:
     ports:
       - "3000:3000"
     stdin_open: true
+  airflow:
+    build: ./airflow
+    volumes:
+      - ./airflow/dags:/usr/local/airflow/dags
+    ports:
+       - "8088:8080"
+    stdin_open: true
 
 volumes:
   node-modules:
