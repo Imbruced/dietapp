@@ -26,10 +26,11 @@ services:
     ports:
       - "3000:3000"
     stdin_open: true
-  airflow:
-    build: ./airflow
+  scheduler:
+    build: ./scheduler
     volumes:
-      - ./airflow/dags:/usr/local/airflow/dags
+      - ./scheduler/dags:/usr/local/airflow/dags
+      - ./scheduler/requirements.txt:/requirements.txt
     ports:
        - "8088:8080"
     stdin_open: true
