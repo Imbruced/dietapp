@@ -1,0 +1,1 @@
+cp $(ls ./dev/* | grep .py) ./dags
