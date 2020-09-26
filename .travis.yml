@@ -3,8 +3,8 @@ jdk:
   - openjdk11
 python:
   - "3.7"
-#services:
-#  - docker
+services:
+  - docker
 before_install:
   - sudo apt-get -y install python3-pip python-dev
   - sudo pip3 install -U setuptools
@@ -13,12 +13,12 @@ before_install:
 install:
   - python3 -m pip install pipenv
 script:
-#  - docker-compose up -d
+  - docker-compose up -d
   - (cd scheduler/dev ; pipenv install --dev)
   - (cd scheduler/dev ; pipenv run pytest tests)
-#  - ./gradlew test --tests "pl.diet.company.dietapp.TestAuthentication"
-#  - ./gradlew test --tests "pl.diet.company.dietapp.TestProduct"
-#  - ./gradlew test --tests "pl.diet.company.dietapp.TestAddProduct"
-#  - ./gradlew test --tests "pl.diet.company.dietapp.TestProductRemove"
-#  - ./gradlew test --tests "pl.diet.company.dietapp.unit.TestUserRegistration"
-#  - ./gradlew test --tests "pl.diet.company.dietapp.TestUserRegistration"
+  - ./gradlew test --tests "pl.diet.company.dietapp.TestAuthentication"
+  - ./gradlew test --tests "pl.diet.company.dietapp.TestProduct"
+  - ./gradlew test --tests "pl.diet.company.dietapp.TestAddProduct"
+  - ./gradlew test --tests "pl.diet.company.dietapp.TestProductRemove"
+  - ./gradlew test --tests "pl.diet.company.dietapp.unit.TestUserRegistration"
+  - ./gradlew test --tests "pl.diet.company.dietapp.TestUserRegistration"
