@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 notebook="==6.0"
 pytest="*"
+requests-mock="*"
 
 [packages]
 requests = "==2.24.0"
