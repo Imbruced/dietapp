@@ -1,0 +1,1 @@
+STARTING_PAGE = "https://www.carrefour.pl"

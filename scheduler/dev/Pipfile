@@ -4,10 +4,14 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+notebook="==6.0"
+pytest="*"
 
 [packages]
 requests = "==2.24.0"
 apache-airflow = "==1.10.12"
+bs4 = "*"
+attrs = "*"
 
 [requires]
 python_version = "3.7"
