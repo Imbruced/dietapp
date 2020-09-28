@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FooterStyled = styled.footer`
-  background-color: #f2f2f2f2;
+  background-color: ${({ theme }) => theme.color.lightGray};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,7 +11,7 @@ export const FooterStyled = styled.footer`
   width: 100%;
   height: 4vh;
   text-align: center;
-  font-size: 12px;
-  font-family: sans-serif;
-  color: #707070;
+  font-size: ${({ theme }) => theme.fontSize.xsmall};
+  font-family: ${({ theme }) => theme.color.ff1};
+  color: ${({ theme }) => theme.color.gray};
 `;

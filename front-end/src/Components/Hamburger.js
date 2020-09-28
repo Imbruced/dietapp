@@ -1,5 +1,4 @@
 import React from "react";
-
 import { StyledHamburger } from "./styled-components/Hamburger.style";
 
 const Hamburger = ({ click, isOpen }) => {

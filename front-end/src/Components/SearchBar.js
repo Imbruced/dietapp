@@ -1,18 +1,19 @@
-import React, { Component } from "react";
-import { SearchBarStyled } from "./styled-components/SearchBar.style";
+import React from "react";
+import { StyledPrimaryBackgroundWrapper } from "./styled-components/PrimaryBackgroundWrapper.style";
+import { StyledInput } from "./styled-components/Input.style";
 
 const SearchBar = (props) => {
   return (
-    <SearchBarStyled>
+    <StyledPrimaryBackgroundWrapper>
       <form>
-        <input
+        <StyledInput
           type="text"
           value={props.value}
           onChange={props.changeHandler}
           placeholder="Wpisz nazwę produktu"
         />
       </form>
-    </SearchBarStyled>
+    </StyledPrimaryBackgroundWrapper>
   );
 };
 

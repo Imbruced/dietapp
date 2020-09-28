@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledMenu } from "./styled-components/Menu.style";
-import { StyledButton } from "./styled-components/Buttons.style";
+import { StyledButton } from "./styled-components/Button.style";
 import { NavLink } from "react-router-dom";
 
 const Menu = ({ isOpen, click }) => {

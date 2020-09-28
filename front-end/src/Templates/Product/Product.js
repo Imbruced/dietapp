@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import Logo from "../../Components/Logo";
 import SearchBar from "../../Components/SearchBar";
 import ProductCard from "../../Components/ProductCard";
-import Button from "../../Components/Button";
+import { StyledBackButton } from "../../Components/styled-components/Button.style";
+import { StyledPrimaryBackgroundWrapper } from "../../Components/styled-components/PrimaryBackgroundWrapper.style";
+import { StyledTriangleBackgroundWrapper } from "../../Components/styled-components/TriangleBackgroundWrapper.style";
 
-import backIco from "../../assets/svg/backIco.svg";
+import { images } from "../../utils/images";
+import { buttonsData } from "../../utils/texts";
 
 class Product extends Component {
   state = {};
@@ -14,10 +16,18 @@ class Product extends Component {
     return (
       <>
         <Logo />
-        <SearchBar />
-        <ProductCard props={this.props} />
+        <StyledPrimaryBackgroundWrapper>
+          <SearchBar />
+        </StyledPrimaryBackgroundWrapper>
+        <StyledTriangleBackgroundWrapper>
+          <view></view>
+          <ProductCard props={this.props} />
+        </StyledTriangleBackgroundWrapper>
         <Link to="/search">
-          <Button txt="Wstecz" img={backIco} />
+          <StyledBackButton>
+            <img src={images.backIco} alt={buttonsData.backTxt} />{" "}
+            {buttonsData.backTxt}
+          </StyledBackButton>
         </Link>
       </>
     );

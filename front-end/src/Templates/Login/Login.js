@@ -1,17 +1,20 @@
 import React from "react";
-
 import Logo from "../../Components/Logo";
 import FormLogin from "../../Components/Form.Login";
-import { LoginStyled } from "./Login.style";
+import { StyledPrimaryBackgroundWrapper } from "../../Components/styled-components/PrimaryBackgroundWrapper.style";
+import { StyledSubheader } from "../../Components/styled-components/Subheader.style";
+import { subheadersData } from "../../utils/texts";
 
 const Login = () => {
   return (
     <>
       <Logo />
-      <LoginStyled>
-        <h2 class="login-header">Twój osobisty dzienniczek kalorii</h2>
+      <StyledPrimaryBackgroundWrapper>
+        <StyledSubheader loginSubheader>
+          {subheadersData.loginHeader}
+        </StyledSubheader>
         <FormLogin />
-      </LoginStyled>
+      </StyledPrimaryBackgroundWrapper>
     </>
   );
 };

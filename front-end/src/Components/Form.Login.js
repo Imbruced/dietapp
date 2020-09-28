@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-
 import { Link } from "react-router-dom";
+import { StyledForm } from "./styled-components/Form.style";
+import { StyledBoard } from "./styled-components/Board.style";
+import { StyledInput } from "./styled-components/Input.style";
 
-import { LoginFormStyled } from "./styled-components/Form.Login.style";
+import { StyledSubheader } from "./styled-components/Subheader.style";
+import { formsData } from "../utils/texts";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -24,34 +27,38 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <LoginFormStyled>
-        <h2 class="login-subheader large">Zaloguj się</h2>
-        <form onSubmit={this.handleSubmit}>
+      <StyledBoard>
+        <StyledSubheader loginSubheader large dark>
+          {formsData.logInTxt}
+        </StyledSubheader>
+        <StyledForm onSubmit={this.handleSubmit}>
           <label htmlFor="mail">
-            <span className="label-text"> E-mail</span>
-            <input
+            <span className="label-text"> {formsData.emailTxt}</span>
+            <StyledInput
               type="mail"
               name="mail"
               value={this.state.value}
               onChange={this.handleChange}
+              loginInput
             />
           </label>
           <label htmlFor="password">
-            <span className="label-text"> Hasło</span>
-            <input
+            <span className="label-text"> {formsData.passwordTxt}</span>
+            <StyledInput
               name="password"
               type="password"
               value={this.state.value}
               onChange={this.handleChange}
-            />
+              loginInput
+            ></StyledInput>
           </label>
-
-          <input type="submit" value="Zaloguj się" />
-        </form>
-        <h2 class="login-subheader">
-          Jeśli nie posiadasz konta, <Link to="/register">zarejestruj się</Link>
-        </h2>
-      </LoginFormStyled>
+          <StyledInput type="submit" value="Zaloguj się" />
+        </StyledForm>
+        <StyledSubheader loginSubheader left dark normal>
+          {formsData.registerSlogan[0]}
+          <Link to="/register">{formsData.registerSlogan[1]}</Link>
+        </StyledSubheader>
+      </StyledBoard>
     );
   }
 }

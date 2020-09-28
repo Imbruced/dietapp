@@ -1,6 +1,5 @@
 import React from "react";
 import logoApp from "../assets/svg/logo.svg";
-
 import { LogoStyled } from "./styled-components/Logo.style";
 
 const Logo = () => {
