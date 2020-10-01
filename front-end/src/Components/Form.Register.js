@@ -1,72 +1,10 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-
 import { Link } from "react-router-dom";
-
-const LoginFormStyled = styled.div`
-  display: flex;
-  height: 100;
-  flex-direction: column;
-  background-color: #ffffff;
-  margin: 15px 0 50px;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
-  h2 {
-    background-color: #ffffff;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .login-subheader.large {
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 0;
-  }
-  .login-subheader {
-    text-align: center;
-    margin: 15px 0;
-    color: #97bf04;
-    font-size: 18px;
-    font-family: "DIN Alternate";
-  }
-  label {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    color: #97bf04;
-    font-size: 18px;
-    font-family: "DIN Alternate";
-  }
-  .label-text {
-    display: block;
-    width: 40%;
-    text-align: right;
-  }
-  input {
-    margin: 15px;
-    padding: 10px;
-    width: 60%;
-    max-width: 500px;
-    border: none;
-    border-radius: 10px;
-    color: #97bf04;
-    font-family: "Courier";
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
-    transition: 0.3s;
-  }
-  input:focus {
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
-  }
-  .submit {
-    display: block;
-    margin: 0 auto;
-  }
-`;
+import { StyledBoard } from "./styled-components/Board.style";
+import { StyledSubheader } from "./styled-components/Subheader.style";
+import { StyledForm } from "./styled-components/Form.style";
+import { StyledInput } from "./styled-components/Input.style";
+import { formsData } from "../utils/texts";
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -88,61 +26,68 @@ class RegisterForm extends Component {
 
   render() {
     return (
-      <LoginFormStyled>
-        <h2 class="login-subheader large">Zerejestruj się</h2>
-        <form onSubmit={this.handleSubmit}>
+      <StyledBoard>
+        <StyledSubheader loginSubheader large dark>
+          {formsData.registerTxt}
+        </StyledSubheader>
+        <StyledForm onSubmit={this.handleSubmit}>
           <label htmlFor="name">
-            <span className="label-text"> Imię</span>
-            <input
+            <span className="label-text"> {formsData.nameTxt}</span>
+            <StyledInput
               name="name"
               type="text"
               value={this.state.value}
               onChange={this.handleChange}
+              loginInput
             />
           </label>
           <label htmlFor="surname">
-            <span className="label-text"> Nazwisko</span>
-            <input
+            <span className="label-text"> {formsData.surnameTxt}</span>
+            <StyledInput
               name="surname"
               type="text"
               value={this.state.value}
               onChange={this.handleChange}
+              loginInput
             />
           </label>
           <label htmlFor="mail">
-            <span className="label-text"> E-mail</span>
-            <input
+            <span className="label-text"> {formsData.emailTxt}</span>
+            <StyledInput
               name="mail"
               type="mail"
               value={this.state.value}
               onChange={this.handleChange}
+              loginInput
             />
           </label>
           <label htmlFor="password">
-            <span className="label-text"> Hasło</span>
-            <input
+            <span className="label-text"> {formsData.passwordTxt}</span>
+            <StyledInput
               name="password"
               type="password"
               value={this.state.value}
               onChange={this.handleChange}
+              loginInput
             />
           </label>
           <label htmlFor="re-password">
-            {" "}
-            <span className="label-text"> Powtórz hasło</span>
-            <input
+            <span className="label-text"> {formsData.repeatPasswordsTxt}</span>
+            <StyledInput
               name="re-password"
               type="password"
               value={this.state.value}
               onChange={this.handleChange}
+              loginInput
             />
           </label>
-          <input class="submit" type="submit" value="Załóż konto" />
-        </form>
-        <h2 class="login-subheader">
-          Jeśli posiadasz konto, <Link to="/login">zaloguj się</Link>
-        </h2>
-      </LoginFormStyled>
+          <StyledInput class="submit" type="submit" value="Załóż konto" />
+        </StyledForm>
+        <StyledSubheader loginSubheader dark normal left>
+          {formsData.loginSlogan[0]}
+          <Link to="/login">{formsData.loginSlogan[1]}</Link>
+        </StyledSubheader>
+      </StyledBoard>
     );
   }
 }

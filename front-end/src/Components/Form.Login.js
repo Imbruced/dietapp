@@ -1,71 +1,11 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-
 import { Link } from "react-router-dom";
+import { StyledForm } from "./styled-components/Form.style";
+import { StyledBoard } from "./styled-components/Board.style";
+import { StyledInput } from "./styled-components/Input.style";
 
-const LoginFormStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  margin: 15px;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
-  h2 {
-    background-color: #ffffff;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .login-subheader.large {
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 0;
-  }
-  .login-subheader {
-    text-align: center;
-    margin: 15px 0;
-    color: #97bf04;
-    font-size: 18px;
-    font-family: "DIN Alternate";
-  }
-  label {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    color: #97bf04;
-    font-size: 18px;
-    font-family: "DIN Alternate";
-  }
-  .label-text {
-    display: block;
-    width: 40%;
-    text-align: right;
-  }
-  input {
-    margin: 15px;
-    padding: 10px;
-    width: 60%;
-    max-width: 500px;
-    border: none;
-    border-radius: 10px;
-    color: #97bf04;
-    font-family: "Courier";
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
-    transition: 0.3s;
-  }
-  input:focus {
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
-  }
-  .submit {
-    display: block;
-    margin: 0 auto;
-  }
-`;
+import { StyledSubheader } from "./styled-components/Subheader.style";
+import { formsData } from "../utils/texts";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -87,34 +27,38 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <LoginFormStyled>
-        <h2 class="login-subheader large">Zaloguj się</h2>
-        <form onSubmit={this.handleSubmit}>
+      <StyledBoard>
+        <StyledSubheader loginSubheader large dark>
+          {formsData.logInTxt}
+        </StyledSubheader>
+        <StyledForm onSubmit={this.handleSubmit}>
           <label htmlFor="mail">
-            <span className="label-text"> E-mail</span>
-            <input
+            <span className="label-text"> {formsData.emailTxt}</span>
+            <StyledInput
               type="mail"
               name="mail"
               value={this.state.value}
               onChange={this.handleChange}
+              loginInput
             />
           </label>
           <label htmlFor="password">
-            <span className="label-text"> Hasło</span>
-            <input
+            <span className="label-text"> {formsData.passwordTxt}</span>
+            <StyledInput
               name="password"
               type="password"
               value={this.state.value}
               onChange={this.handleChange}
-            />
+              loginInput
+            ></StyledInput>
           </label>
-
-          <input type="submit" value="Zaloguj się" />
-        </form>
-        <h2 class="login-subheader">
-          Jeśli nie posiadasz konta, <Link to="/register">zarejestruj się</Link>
-        </h2>
-      </LoginFormStyled>
+          <StyledInput type="submit" value="Zaloguj się" />
+        </StyledForm>
+        <StyledSubheader loginSubheader left dark normal>
+          {formsData.registerSlogan[0]}
+          <Link to="/register">{formsData.registerSlogan[1]}</Link>
+        </StyledSubheader>
+      </StyledBoard>
     );
   }
 }

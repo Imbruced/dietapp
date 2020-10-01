@@ -1,0 +1,9 @@
+.advice-header {
+  font-size: 15px;
+}
+.advice-text {
+  font-size: 20px;
+}
+a {
+  z-index: 5;
+}
