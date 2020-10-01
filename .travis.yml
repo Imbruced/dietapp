@@ -1,0 +1,14 @@
+language: java
+jdk:
+  - openjdk11
+services:
+  - docker
+
+script:
+  - docker-compose up -d
+  - ./gradlew test --tests "pl.diet.company.dietapp.TestAuthentication"
+  - ./gradlew test --tests "pl.diet.company.dietapp.TestProduct"
+  - ./gradlew test --tests "pl.diet.company.dietapp.TestAddProduct"
+  - ./gradlew test --tests "pl.diet.company.dietapp.TestProductRemove"
+  - ./gradlew test --tests "pl.diet.company.dietapp.unit.TestUserRegistration"
+  - ./gradlew test --tests "pl.diet.company.dietapp.TestUserRegistration"
