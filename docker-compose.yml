@@ -26,6 +26,14 @@ services:
     ports:
       - "3000:3000"
     stdin_open: true
+  scheduler:
+    build: ./scheduler
+    volumes:
+      - ./scheduler/dags:/usr/local/airflow/dags
+      - ./scheduler/requirements.txt:/requirements.txt
+    ports:
+       - "8088:8080"
+    stdin_open: true
 
 volumes:
   node-modules:
