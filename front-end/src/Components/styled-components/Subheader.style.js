@@ -41,4 +41,11 @@ export const StyledSubheader = styled.h2`
     css`
       font-weight: normal;
     `}
+    ${({ diary }) =>
+    diary &&
+    css`
+      /* margin: 0; */
+      color: ${({ theme }) => theme.color.secondary};
+      font-size: ${({ theme }) => theme.fontSize.normal};
+    `}
 `;

@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const StyledMenu = styled.div`
   background-color: #fff;
   position: fixed;
-  width: 30%;
+  width: 50%;
   height: 100%;
   top: 0;
   left: ${(props) => (props.open ? "0" : "-80%")};

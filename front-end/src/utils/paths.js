@@ -5,4 +5,8 @@ export const path = {
   login: "/login",
   register: "/register",
   diary: "/diary",
+  newProduct: "/newproduct",
+  myAcount: "/myacount",
+  settings: "/settings",
+  about: "/about",
 };
