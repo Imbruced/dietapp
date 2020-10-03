@@ -12,3 +12,6 @@ class Category:
     def validate(category: str):
         if category not in PRODUCT_CATEGORIES:
             raise ElementNotExists(f"category {category} does not exists, please update it within the configuration file")
+
+    def to_json(self):
+        return {"name": self.name}

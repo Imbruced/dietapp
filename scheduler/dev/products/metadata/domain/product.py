@@ -20,3 +20,11 @@ class ProductMetaData:
             source_id=kwargs.get("source_id", self.source_id),
             date=kwargs.get("date", self.date)
         )
+
+    def to_json(self):
+        return {
+            "category": self.category.to_json(),
+            "url": self.url,
+            "source_id": self.source_id,
+            "date": self.date
+        }

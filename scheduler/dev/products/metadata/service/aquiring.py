@@ -20,22 +20,22 @@ class ProductGetter(ABC):
 class CarrefourProductGetter(ProductGetter):
     starting_url = STARTING_PAGE
 
-    def __init__(self, category: Category, date: datetime, pages: int):
+    def __init__(self, category: Category, date: str, pages: int):
         self.pages = pages
         self.category = category
         self.date = date
 
-    def get(self):
+    def get(self) -> List[ProductMetaData]:
         pages = []
         for page in range(self.pages):
             pages.extend(self.get_page(page, self.date))
 
         return pages
 
-    def get_page(self, page: int, date: datetime) -> List[ProductMetaData]:
+    def get_page(self, page: int, date: str) -> List[ProductMetaData]:
         page_data = requests.get(self.__create_base_url(self.category), params={"page": page})
         page_data_text = page_data.content.decode()
-        return self.parse_page(page_data_text, self.category, DateUtil.format_date(date))
+        return self.parse_page(page_data_text, self.category, date)
 
     @classmethod
     def __create_base_url(cls, category: Category):

@@ -1,31 +1,5 @@
-version: '3.3'
-
+version: '2.1'
 services:
-  mongo:
-    container_name: diet_app_mongo
-    build:
-      context: mongo
-    ports:
-      - 27018:27017
-    volumes:
-      - ./mongo_data:/data/db
-    environment:
-      MONGO_INITDB_DATABASE: diet_db
-  mongo-express:
-    image: mongo-express
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: diet_admin
-      ME_CONFIG_MONGODB_ADMINPASSWORD: diet
-  frontend:
-    build: ./front-end
-    volumes:
-      - ./front-end:/app/frontend
-      - node-modules:/app/frontend/node_modules
-    ports:
-      - "3000:3000"
-    stdin_open: true
   redis:
     image: 'redis:5.0.5'
     # command: redis-server --requirepass redispass
@@ -56,13 +30,14 @@ services:
       # - POSTGRES_DB=airflow
       # - REDIS_PASSWORD=redispass
     volumes:
-      - ./scheduler/dags:/usr/local/airflow/dags
-      - ./scheduler/requirements.txt:/requirements.txt
+      - ./dags:/usr/local/airflow/dags
+      # Uncomment to include custom plugins
+      # - ./plugins:/usr/local/airflow/plugins
     ports:
       - "8080:8080"
     command: webserver
     healthcheck:
-      test: [ "CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]" ]
+      test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
       interval: 30s
       timeout: 30s
       retries: 3
@@ -79,35 +54,15 @@ services:
       - "5555:5555"
     command: flower
 
-  worker:
+  scheduler:
     image: puckel/docker-airflow:1.10.9
     restart: always
     depends_on:
-      - scheduler
-    volumes:
-      - ./scheduler/dags:/usr/local/airflow/dags
-      - ./scheduler/requirements.txt:/requirements.txt
-      # Uncomment to include custom plugins
-      # - ./plugins:/usr/local/airflow/plugins
-    environment:
-      - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
-      - EXECUTOR=Celery
-      # - POSTGRES_USER=airflow
-      # - POSTGRES_PASSWORD=airflow
-      # - POSTGRES_DB=airflow
-      # - REDIS_PASSWORD=redispass
-    command: worker
-  scheduler:
-    restart: always
-    build: ./scheduler
-    depends_on:
       - webserver
     volumes:
-      - ./scheduler/dags:/usr/local/airflow/dags
-      - ./scheduler/requirements.txt:/requirements.txt
-    env_file:
-      - celery_executor.yml
-    stdin_open: true
+      - ./dags:/usr/local/airflow/dags
+      # Uncomment to include custom plugins
+      # - ./plugins:/usr/local/airflow/plugins
     environment:
       - LOAD_EX=n
       - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
@@ -118,6 +73,20 @@ services:
       # - REDIS_PASSWORD=redispass
     command: scheduler
 
-
-volumes:
-  node-modules:
+  worker:
+    image: puckel/docker-airflow:1.10.9
+    restart: always
+    depends_on:
+      - scheduler
+    volumes:
+      - ./dags:/usr/local/airflow/dags
+      # Uncomment to include custom plugins
+      # - ./plugins:/usr/local/airflow/plugins
+    environment:
+      - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+      - EXECUTOR=Celery
+      # - POSTGRES_USER=airflow
+      # - POSTGRES_PASSWORD=airflow
+      # - POSTGRES_DB=airflow
+      # - REDIS_PASSWORD=redispass
+    command: worker

@@ -14,7 +14,7 @@ def assertListEqual(lit, rit):
 
 class TestProductMetaDataAquire:
     __date = datetime(2020, 9, 10, 12, 47, 33)
-    __eggs_and_dairy_category = Category("/mleko-nabial-jaja")
+    __eggs_and_dairy_category = Category("mleko-nabial-jaja")
     __product_getter = CarrefourProductGetter(__eggs_and_dairy_category, __date, 3)
     sample_product_metadata = ProductMetaData(__eggs_and_dairy_category, "", None, "2020-09-10T12-47-33")
     __expected_products = [

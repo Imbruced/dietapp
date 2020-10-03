@@ -7,6 +7,7 @@ verify_ssl = true
 notebook="==6.0"
 pytest="*"
 requests-mock="*"
+mongomock="*"
 
 [packages]
 requests = "==2.24.0"
