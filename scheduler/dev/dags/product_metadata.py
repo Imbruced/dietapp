@@ -16,7 +16,7 @@ categories = [
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': days_ago(2),
+    'start_date': days_ago(1),
     'email': ['pawel93kocinski@gmail.com'],
     'email_on_failure': False,
     'email_on_retry': False,
@@ -25,10 +25,12 @@ default_args = {
 }
 
 dag = DAG(
-    'product_metadata_scraping',
+    'product_metadata_scraping_v4',
     default_args=default_args,
     description='A simple tutorial DAG',
     schedule_interval=timedelta(days=1),
+    max_active_runs=1,
+    concurrency=1
 )
 
 start_scrap = DummyOperator(
@@ -41,7 +43,7 @@ for category in categories:
     operator = PythonOperator(
         task_id=f"scraping_{category.name}",
         provide_context=True,
-        op_kwargs={"category": category, "pages": 3},
+        op_kwargs={"category": category, "pages": 1},
         python_callable=ProductMetadataGetter.process,
         dag=dag,
     )

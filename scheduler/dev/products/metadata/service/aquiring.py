@@ -1,5 +1,4 @@
 from abc import ABC
-from datetime import datetime
 from typing import List
 
 from bs4 import BeautifulSoup
@@ -8,7 +7,6 @@ import requests
 from products.metadata.config.urls import STARTING_PAGE
 from products.metadata.domain.category import Category
 from products.metadata.domain.product import ProductMetaData
-from products.utils.date import DateUtil
 
 
 class ProductGetter(ABC):

@@ -23,7 +23,7 @@ class ProductMetadataMongoRepository(MongoRepository):
     port = 27018
     collection = "product_metadata"
     host = "localhost"
-    client = MongoClient(f"mongodb://{user}:{pwd}@{host}:{port}")
+    client = MongoClient(username=user, password=pwd, host=host, port=port, authSource=db)
 
     @classmethod
     def save(cls, iterable: Iterable[ProductMetaData]):
