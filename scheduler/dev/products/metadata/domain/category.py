@@ -15,3 +15,12 @@ class Category:
 
     def to_json(self):
         return {"name": self.name}
+
+    @classmethod
+    def from_json(cls, data):
+        return Category(data.get("name"))
+
+    @classmethod
+    def from_name(cls, name):
+        cls.validate(name)
+        return Category(name)

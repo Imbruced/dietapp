@@ -5,6 +5,7 @@ from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 from airflow.utils.dates import days_ago
 
+from products.details.fetching import RawProductJob
 from products.metadata.config.categories import PRODUCT_CATEGORIES
 from products.metadata.domain.category import Category
 from products.metadata.process import ProductMetadataGetter
@@ -47,4 +48,12 @@ for category in categories:
         python_callable=ProductMetadataGetter.process,
         dag=dag,
     )
-    start_scrap >> operator
+
+    raw_operator = PythonOperator(
+        task_id=f"getting_products_from_{category.name}",
+        provide_context=True,
+        op_kwargs={"category": category},
+        python_callable=RawProductJob.process,
+        dag=dag,
+    )
+    start_scrap >> operator >> raw_operator

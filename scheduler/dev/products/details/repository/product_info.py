@@ -1,9 +1,17 @@
 from typing import List
 
-from products.details.domain.info import ProductInfo
+from pymongo import MongoClient
+
+from products.details.domain.info import RawProduct
 
 
-class ProductInfoRepository:
+class RawProductInfoRepository:
 
-    def save(self, product: List[ProductInfo]):
-        pass
+    collection = "raw_products"
+    db = "diet_db"
+
+    @classmethod
+    def save(cls, products: List[RawProduct], client: MongoClient):
+        collection = client[cls.db][cls.collection]
+        for product in products:
+            collection.insert_one(product.to_json())

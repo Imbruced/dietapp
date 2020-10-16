@@ -1,3 +1,4 @@
+import json
 from typing import Optional
 
 import attr
@@ -28,3 +29,14 @@ class ProductMetaData:
             "source_id": self.source_id,
             "date": self.date
         }
+
+    @classmethod
+    def from_json(cls, data):
+        return ProductMetaData(
+            category=Category.from_json(data.get("category")),
+            url=data.get("url"),
+            source_id=data.get("source_id"),
+            date=data.get("date")
+        )
+
+

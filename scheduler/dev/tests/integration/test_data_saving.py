@@ -1,11 +1,10 @@
 import mongomock
 import pymongo
-from pymongo.collection import Collection
 
 from products.metadata.domain.category import Category
 from products.metadata.domain.product import ProductMetaData
 from products.metadata.repository.mongo import ProductMetadataMongoRepository
-from tests.integration.test_product_aquiring import assertListEqual
+from tests.integration.test_product_metadata_aquiring import assertListEqual
 
 PORT = 27019
 HOST = "server.example.com"
@@ -22,13 +21,6 @@ ProductMetadataMongoRepository.collection = COLLECTION
 ProductMetadataMongoRepository.host = HOST
 
 
-class MongoClient:
-    def __init__(self, client, db, collection: Collection):
-        self.client = client
-        self.db = db
-        self.collection = collection
-
-
 class TestDataSaver:
 
     sample_product_metadata = ProductMetaData(
@@ -43,10 +35,11 @@ class TestDataSaver:
         objects = [
         ]
         client = self.__create_client()
-        ProductMetadataMongoRepository.client = client.client
-        ProductMetadataMongoRepository.save(objects)
+        collection = client[DB][COLLECTION]
 
-        assert(client.collection.find_one() is None)
+        ProductMetadataMongoRepository.save(objects, client)
+
+        assert(collection.find_one() is None)
 
     @mongomock.patch(servers=((HOST, PORT),))
     def test_should_correctly_save_data_to_db(self):
@@ -65,13 +58,14 @@ class TestDataSaver:
             )
         ]
         client = self.__create_client()
-        ProductMetadataMongoRepository.client = client.client
 
-        assert(client.collection.find_one() is None)
+        collection = client[DB][COLLECTION]
 
-        ProductMetadataMongoRepository.save(objects)
+        assert(collection.find_one() is None)
 
-        all_elements = client.collection.find()
+        ProductMetadataMongoRepository.save(objects, client)
+
+        all_elements = collection.find()
 
         assertListEqual(
             [metadata["source_id"] for metadata in all_elements],
@@ -86,6 +80,4 @@ class TestDataSaver:
 
     def __create_client(self):
         client = pymongo.MongoClient(f"mongodb://{USER}:{PWD}@{HOST}:{PORT}")
-        db = client[DB]
-        collection = db[COLLECTION]
-        return MongoClient(client, db, collection)
+        return client

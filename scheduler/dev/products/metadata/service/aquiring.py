@@ -46,7 +46,7 @@ class CarrefourProductGetter(ProductGetter):
         return [
             ProductMetaData(
                 category=category,
-                url=raw_product.find("a")["href"],
+                url=STARTING_PAGE + raw_product.find("a")["href"],
                 date=date,
                 source_id=None
             ) for raw_product in all_raw_products
