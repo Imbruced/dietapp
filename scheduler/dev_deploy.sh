@@ -1,1 +1,2 @@
-cp $(ls ./dev/* | grep .py) ./dags
+cp -rf ./dev/products ./dags
+cp -f ./dev/dags/* ./dags

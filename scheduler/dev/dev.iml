@@ -3,7 +3,10 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 3.7 virtualenv at ~/.local/share/virtualenvs/dev-WBSO-WNH (2)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 virtualenv at ~/.local/share/virtualenvs/dev-4_hWOfhX" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+  <component name="TestRunnerService">
+    <option name="PROJECT_TEST_RUNNER" value="pytest" />
   </component>
 </module>
