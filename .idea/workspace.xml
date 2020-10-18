@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="de3c68f4-fe13-4294-a3a2-8798fc0a0c0f" name="Default Changelist" comment="Add build file.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/dietapp">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/dietapp">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1j3tmPgwhQmpRrbPUCtfdQjUmUf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="add_unversioned_files" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/dietapp" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/dietapp/src/main/resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dietapp/src/main/kotlin/pl/diet/company/dietapp" />
+      <recent name="$PROJECT_DIR$/dietapp/src/main/kotlin" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TestApp.test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/dietapp" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;TestApp.test&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.TestApp.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de3c68f4-fe13-4294-a3a2-8798fc0a0c0f" name="Default Changelist" comment="" />
+      <created>1603044761495</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603044761495</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Change testing framework to spock.">
+      <created>1603047214329</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1603047214329</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Change testing framework to spock.">
+      <created>1603047968585</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603047968585</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add build file.">
+      <created>1603048043453</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1603048043453</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/dietapp" />
+    </ignored-roots>
+    <MESSAGE value="Change testing framework to spock." />
+    <MESSAGE value="Add build file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add build file." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2646" y="301" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603044975294">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2646" y="301" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603044975294" />
+    <state x="2409" y="101" width="998" height="903" key="CommitChangelistDialog2" timestamp="1603048104230">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2409" y="101" width="998" height="903" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603048104230" />
+    <state x="2696" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1603048263918">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2696" y="310" width="424" height="484" key="FileChooserDialogImpl/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603048263918" />
+    <state width="1807" height="330" key="GridCell.Tab.0.bottom" timestamp="1603046410341">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1807" height="330" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603046410341" />
+    <state width="1807" height="330" key="GridCell.Tab.0.center" timestamp="1603046410341">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1807" height="330" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603046410341" />
+    <state width="1807" height="330" key="GridCell.Tab.0.left" timestamp="1603046410340">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1807" height="330" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603046410340" />
+    <state width="1807" height="330" key="GridCell.Tab.0.right" timestamp="1603046410341">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1807" height="330" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603046410341" />
+    <state x="2402" y="187" key="SettingsEditor" timestamp="1603047752424">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2402" y="187" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603047752424" />
+    <state x="2508" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1603048059630">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2508" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603048059630" />
+    <state x="2611" y="269" width="594" height="566" key="VcsDiffUtil.ChangesDialog" timestamp="1603046101409">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2611" y="269" width="594" height="566" key="VcsDiffUtil.ChangesDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603046101409" />
+  </component>
+</project>
