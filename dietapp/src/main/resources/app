@@ -1,0 +1,12 @@
+server:
+    port: 5052
+
+
+spring:
+  data:
+    mongodb:
+      database: diet_db
+      port: 27018
+      username: diet_admin
+      password: diet
+
