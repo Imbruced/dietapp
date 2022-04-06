@@ -4,7 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-notebook="==6.0"
+notebook="==6.4.10"
 pytest="*"
 requests-mock="*"
 mongomock="*"
