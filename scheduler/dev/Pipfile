@@ -11,7 +11,7 @@ mongomock="*"
 
 [packages]
 requests = "==2.24.0"
-apache-airflow = "==1.10.12"
+apache-airflow = "==2.6.0"
 bs4 = "*"
 attrs = "*"
 pymongo = "*"
