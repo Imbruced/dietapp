@@ -10,7 +10,7 @@ requests-mock="*"
 mongomock="*"
 
 [packages]
-requests = "==2.24.0"
+requests = "==2.31.0"
 apache-airflow = "==1.10.12"
 bs4 = "*"
 attrs = "*"
